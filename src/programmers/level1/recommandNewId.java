@@ -1,4 +1,4 @@
-package com.kirri.chop.programmers.level1;
+package programmers.level1;
 
 import java.util.Scanner;
 

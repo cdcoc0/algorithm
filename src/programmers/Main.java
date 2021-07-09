@@ -1,4 +1,4 @@
-package com.kirri.chop;
+package programmers;
 
 public class Main {
 

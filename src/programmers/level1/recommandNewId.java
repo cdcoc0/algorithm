@@ -5,76 +5,52 @@ import java.util.Scanner;
 public class recommandNewId {
     public static String recommandNewId(String new_id) {
         String answer = "";
-//        String output = "";
-//         int tmp;
-         //char charTmp;
 
-         //1단계
-//        for(int i = 0; i < new_id.length(); i++) {
-//            tmp = new_id.charAt(i);
-//            if(65 <= tmp && tmp <= 90) {
-//                answer += (char)(tmp + 32);
-//            } else {
-//                answer += (char)tmp;
-//            }
-//        }
+        //1, 2단계
+        answer = new_id.toLowerCase()
+                        .replaceAll("[^(a-z0-9-_.)]", "");
 
-        answer = new_id.toLowerCase();
-
-//        for(int i = 0; i < new_id.length(); i++) {
-//            tmp = new_id.charAt(i);
-//            if(Character.isUpperCase(tmp)) { //대문자인 경우
-//                answer += (char)(tmp + 32);
-//            } else { //97~120은 소문자
-//                answer += tmp;
-//            }
-//        }
-
-//        //2단계
-//        for(int i = 0; i < answer.length(); i++) {
-//            tmp = answer.charAt(i);
-//            char charTmp = (char)tmp;
-//            if((48 <= tmp && tmp <= 57) || (97 <= tmp && tmp <= 120) || charTmp == '-' || charTmp == '_' || charTmp == '.')
-//                output += charTmp;
-//        }
-//        answer = output;
-
-        answer = answer.replaceAll("[^(a-z0-9-_.)]", "");
+        System.out.println("1, 2: " + answer);
 
         //3단계
         while(answer.contains(".."))
             answer = answer.replace("..", ".");
+        System.out.println("3: " + answer);
 
         //4단계
         if(answer.contains(".")) {
-            if(answer.indexOf(".") == 0 && answer.length() != 1)
+            if(answer.length() > 1 && answer.charAt(0) == '.')
                 answer = answer.substring(1);
 
-            if(answer.lastIndexOf(".") == answer.length() - 1)
-                if(answer.length() == 1) {
+            if(answer.charAt(answer.length() - 1) == '.') {
+                if (answer == ".") {
                     answer = "";
                 } else {
-                    answer = answer.substring(0, answer.lastIndexOf("."));
+                    answer = answer.substring(0, answer.length() - 1);
                 }
+            }
         }
+        System.out.println("4: " + answer);
 
         //5단계
-        if(answer == null || answer.isEmpty())
+        if(answer == null || answer.trim().length() == 0)
             answer = "a";
+        System.out.println("5: " + answer);
 
         //6단계
         if(answer.length() >= 16) {
             answer = answer.substring(0, 15);
-            if(answer.contains(".") && answer.lastIndexOf(".") == answer.length() - 1)
-                answer = answer.substring(0, answer.lastIndexOf("."));
+            if(answer.charAt(14) == '.')
+                answer = answer.substring(0, 14);
         }
+        System.out.println("6: " + answer);
 
         //7단계
         while(answer.length() <= 2) {
             answer += answer.charAt(answer.length() - 1);
         }
+        System.out.println("7: " + answer);
 
-        System.out.println(answer);
 
 //        1단계 new_id의 모든 대문자를 대응되는 소문자로 치환합니다.
 //        2단계 new_id에서 알파벳 소문자, 숫자, 빼기(-), 밑줄(_), 마침표(.)를 제외한 모든 문자를 제거합니다.
@@ -86,6 +62,7 @@ public class recommandNewId {
 //        7단계 new_id의 길이가 2자 이하라면, new_id의 마지막 문자를 new_id의 길이가 3이 될 때까지 반복해서 끝에 붙입니다.
         return answer;
     }
+
 
     public static void main(String[] args) {
         Scanner stdIn = new Scanner(System.in);

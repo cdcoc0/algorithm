@@ -8,48 +8,39 @@ public class recommandNewId {
 
         //1, 2단계
         answer = new_id.toLowerCase()
-                        .replaceAll("[^(a-z0-9-_.)]", "");
-
-        System.out.println("1, 2: " + answer);
+                .replaceAll("[^a-z0-9-_.]", "");
 
         //3단계
         while(answer.contains(".."))
             answer = answer.replace("..", ".");
-        System.out.println("3: " + answer);
 
         //4단계
         if(answer.contains(".")) {
             if(answer.length() > 1 && answer.charAt(0) == '.')
-                answer = answer.substring(1);
+                answer = answer.substring(1, answer.length());
 
             if(answer.charAt(answer.length() - 1) == '.') {
-                if (answer == ".") {
-                    answer = "";
-                } else {
-                    answer = answer.substring(0, answer.length() - 1);
-                }
+                answer = answer.substring(0, answer.length() - 1);
             }
         }
-        System.out.println("4: " + answer);
 
         //5단계
-        if(answer == null || answer.trim().length() == 0)
-            answer = "a";
-        System.out.println("5: " + answer);
+        if(answer.trim().equals(""))
+            answer += "a";
 
         //6단계
         if(answer.length() >= 16) {
             answer = answer.substring(0, 15);
-            if(answer.charAt(14) == '.')
-                answer = answer.substring(0, 14);
+            if(answer.charAt(answer.length() - 1) == '.')
+                answer = answer.substring(0, answer.length() - 1);
         }
-        System.out.println("6: " + answer);
 
         //7단계
-        while(answer.length() <= 2) {
-            answer += answer.charAt(answer.length() - 1);
+        if(answer.length() <= 2) {
+            while(answer.length() < 3)
+                answer += answer.charAt(answer.length() - 1);
         }
-        System.out.println("7: " + answer);
+        return answer;
 
 
 //        1단계 new_id의 모든 대문자를 대응되는 소문자로 치환합니다.
@@ -60,7 +51,6 @@ public class recommandNewId {
 //        6단계 new_id의 길이가 16자 이상이면, new_id의 첫 15개의 문자를 제외한 나머지 문자들을 모두 제거합니다.
 //                만약 제거 후 마침표(.)가 new_id의 끝에 위치한다면 끝에 위치한 마침표(.) 문자를 제거합니다.
 //        7단계 new_id의 길이가 2자 이하라면, new_id의 마지막 문자를 new_id의 길이가 3이 될 때까지 반복해서 끝에 붙입니다.
-        return answer;
     }
 
 

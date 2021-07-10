@@ -5,19 +5,21 @@ import java.util.Scanner;
 public class recommandNewId {
     public static String recommandNewId(String new_id) {
         String answer = "";
-        String output = "";
-         int tmp;
+//        String output = "";
+//         int tmp;
          //char charTmp;
 
          //1단계
-        for(int i = 0; i < new_id.length(); i++) {
-            tmp = new_id.charAt(i);
-            if(65 <= tmp && tmp <= 90) {
-                answer += (char)(tmp + 32);
-            } else {
-                answer += (char)tmp;
-            }
-        }
+//        for(int i = 0; i < new_id.length(); i++) {
+//            tmp = new_id.charAt(i);
+//            if(65 <= tmp && tmp <= 90) {
+//                answer += (char)(tmp + 32);
+//            } else {
+//                answer += (char)tmp;
+//            }
+//        }
+
+        answer = new_id.toLowerCase();
 
 //        for(int i = 0; i < new_id.length(); i++) {
 //            tmp = new_id.charAt(i);
@@ -28,17 +30,51 @@ public class recommandNewId {
 //            }
 //        }
 
-        //2단계
-        for(int i = 0; i < answer.length(); i++) {
-            tmp = answer.charAt(i);
-            char charTmp = (char)tmp;
-            if((48 <= tmp && tmp <= 57) || (97 <= tmp && tmp <= 120) || charTmp == '-' || charTmp == '_' || charTmp == '.')
-                output += charTmp;
-        }
-        answer = output;
+//        //2단계
+//        for(int i = 0; i < answer.length(); i++) {
+//            tmp = answer.charAt(i);
+//            char charTmp = (char)tmp;
+//            if((48 <= tmp && tmp <= 57) || (97 <= tmp && tmp <= 120) || charTmp == '-' || charTmp == '_' || charTmp == '.')
+//                output += charTmp;
+//        }
+//        answer = output;
+
+        answer = answer.replaceAll("[^(a-z0-9-_.)]", "");
 
         //3단계
+        while(answer.contains(".."))
+            answer = answer.replace("..", ".");
 
+        //4단계
+        if(answer.contains(".")) {
+            if(answer.indexOf(".") == 0 && answer.length() != 1)
+                answer = answer.substring(1);
+
+            if(answer.lastIndexOf(".") == answer.length() - 1)
+                if(answer.length() == 1) {
+                    answer = "";
+                } else {
+                    answer = answer.substring(0, answer.lastIndexOf("."));
+                }
+        }
+
+        //5단계
+        if(answer == null || answer.isEmpty())
+            answer = "a";
+
+        //6단계
+        if(answer.length() >= 16) {
+            answer = answer.substring(0, 15);
+            if(answer.contains(".") && answer.lastIndexOf(".") == answer.length() - 1)
+                answer = answer.substring(0, answer.lastIndexOf("."));
+        }
+
+        //7단계
+        while(answer.length() <= 2) {
+            answer += answer.charAt(answer.length() - 1);
+        }
+
+        System.out.println(answer);
 
 //        1단계 new_id의 모든 대문자를 대응되는 소문자로 치환합니다.
 //        2단계 new_id에서 알파벳 소문자, 숫자, 빼기(-), 밑줄(_), 마침표(.)를 제외한 모든 문자를 제거합니다.

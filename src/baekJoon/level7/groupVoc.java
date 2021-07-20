@@ -12,7 +12,7 @@ public class groupVoc {
             if(all[ch] == 0) {
                 all[ch] = 1;
             } else if(all[ch] == 1 && word.charAt(i) != word.charAt(i - 1))
-                return -1;
+                return 0;
         }
         return 1;
     }
@@ -26,17 +26,12 @@ public class groupVoc {
             group[i] = br.readLine();
         }
 
-        int[] cnt = new int[num];
+        int cnt = 0;
         for(int i = 0; i < num; i++) {
-            cnt[i] = check(group[i]);
+            cnt += check(group[i]);
         }
 
-        int answer = 0;
-        for(int val : cnt) {
-            if(val == 1)  answer += 1;
-        }
-
-        System.out.println(answer);
+        System.out.println(cnt);
     }
     //배열을 안쓰고 readLine() 메서드를 아예 따로 분리시킨 함수에서 처리하면 코드 길이가 짧아짐
     //prev, now 변수를 만들어 간단하게 할 수 있음

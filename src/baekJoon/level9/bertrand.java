@@ -3,7 +3,6 @@ package baekJoon.level9;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 
 public class bertrand {
     static boolean[] getPrime() {
@@ -20,31 +19,19 @@ public class bertrand {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb1 = new StringBuilder();
-        StringBuilder sb2 = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
 
-        int cnt = 0;
+        boolean[] prime = getPrime();
         while(true) {
             int n = Integer.parseInt(br.readLine());
             if(n == 0) break;
-            sb1.append(n + " ");
-            cnt++;
-        }
-        StringTokenizer st = new StringTokenizer(sb1.toString());
-        int[] arrayN = new int[cnt];
-        for(int i = 0; i < cnt; i++){
-            arrayN[i] = Integer.parseInt(st.nextToken());
-        }
-        boolean[] prime = getPrime();
-        for(int i = 0; i < arrayN.length; i++) {
-            int cntPrime = 0;
-            for(int j = arrayN[i] + 1; j <= arrayN[i] * 2; j++) {
-                if(!prime[j]) {
-                    cntPrime++;
-                }
+            int cnt = 0;
+            for(int i = n + 1; i <= n * 2; i++) {
+                if(!prime[i])
+                    cnt++;
             }
-            sb2.append(cntPrime + "\n");
+            sb.append(cnt + "\n");
         }
-        System.out.println(sb2);
+        System.out.println(sb);
     }
 }

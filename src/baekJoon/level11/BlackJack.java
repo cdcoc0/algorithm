@@ -19,19 +19,17 @@ public class BlackJack {
         }
 
         int sum = 0;
-        int ptr1 = 0;
-        int ptr2 = 0;
-        int ptr3 = 0;
 
         for(int i = 0; i < n - 2; i++) {
+            if(num[i] > m)
+                continue;
             for(int j = i + 1; j < n - 1; j++) {
+                if(num[i] + num[j] > m)
+                    continue;
                 for(int k = j + 1; k < n; k++) {
                     int current = num[i] + num[j] + num[k];
                     if(current <= m && current > sum) {
                         sum = current;
-                        ptr1 = i;
-                        ptr2 = j;
-                        ptr3 = k;
                     }
                     if(current == m) {
                         System.out.println(current);
@@ -40,7 +38,7 @@ public class BlackJack {
                 }
             }
         }
-        System.out.println(num[ptr1] + num[ptr2] + num[ptr3]);
+        System.out.println(sum);
     }
 }
 

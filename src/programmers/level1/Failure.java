@@ -9,7 +9,6 @@ public class Failure {
             n[stage]++;
         }
 
-
         int sub = stages.length;
         for(int i = 1; i < n.length - 1; i++) {
             float temp = n[i];
@@ -17,9 +16,6 @@ public class Failure {
             sub -= temp;
             if(sub == 0)
                 break;
-        }
-        for(int i = 0; i < n.length; i++) {
-            System.out.println(n[i]);
         }
 
         for(int i = 0; i < n.length - 2; i++) {
@@ -38,7 +34,6 @@ public class Failure {
     }
 
     public static void main(String[] args) {
-//        int[] s = {2, 1, 2, 6, 2, 4, 3, 3};
         int[] s = {4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4};
         System.out.println(solution(6, s));
     }

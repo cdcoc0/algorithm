@@ -26,7 +26,6 @@ public class Failure {
                 }
             }
             result[i] = max;
-            System.out.println(max);
             n[max] = -1;
         }
 

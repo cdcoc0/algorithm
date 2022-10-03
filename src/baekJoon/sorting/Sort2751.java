@@ -3,6 +3,8 @@ package baekJoon.sorting;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Sort2751 {
 
@@ -30,12 +32,17 @@ public class Sort2751 {
 
     public void sort() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
         int n = Integer.parseInt(br.readLine());
-        int[] nums = new int[n];
+//        int[] nums = new int[n];
+
+        ArrayList<Integer> nums = new ArrayList<>();
 
         for(int i = 0; i < n; i++) {
-            nums[i] = Integer.parseInt(br.readLine());
+            nums.add(Integer.parseInt(br.readLine()));
         }
+
+        Collections.sort(nums);
 
         //버블
 //        for(int i = 0; i < n; i++) {
@@ -81,11 +88,15 @@ public class Sort2751 {
 //        }
 
         //quick
-        quick(nums, 0, n - 1);
+//        quick(nums, 0, n - 1);
+
+
 
         for(int num : nums) {
-            System.out.println(num);
+            sb.append(num + "\n");
         }
+
+        System.out.println(sb.toString());
     }
 
     public static void main(String[] args) throws IOException {

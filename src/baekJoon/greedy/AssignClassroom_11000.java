@@ -3,13 +3,26 @@ package baekJoon.greedy;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.*;
 
 /**
  * 강의실 배정_11000
  */
 public class AssignClassroom_11000 {
-    private void greedy(int N, String[][] timeTable) {
-        //
+    private void greedy(Queue<Integer[]> timeTable) {
+        Queue<Integer> queue = new PriorityQueue<>();
+
+        while(!timeTable.isEmpty()) {
+            Integer[] time = timeTable.poll();
+            Integer end = queue.peek();
+            if(end != null && end <= time[0]) {
+                queue.poll();
+            }
+
+            queue.offer(time[1]);
+        }
+
+        System.out.println(queue.size());
     }
 
     public static void main(String[] args) throws IOException {
@@ -17,11 +30,12 @@ public class AssignClassroom_11000 {
         AssignClassroom_11000 main = new AssignClassroom_11000();
 
         int N = Integer.parseInt(br.readLine());
-        String[][] timeTable = new String[N][];
+        Queue<Integer[]> timeTable = new PriorityQueue<>(Comparator.comparingInt((Integer[] o1) -> o1[0]).thenComparingInt((Integer[] o1) -> o1[1]));
         for(int i = 0; i < N; i++) {
-            timeTable[i] = br.readLine().split(" ");
+            String[] split = br.readLine().split(" ");
+            timeTable.offer(new Integer[]{Integer.parseInt(split[0]), Integer.parseInt(split[1])});
         }
 
-        main.greedy(N, timeTable);
+        main.greedy(timeTable);
     }
 }

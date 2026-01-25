@@ -2,6 +2,7 @@ package programmers.level2;
 
 /**
  * 방문 길이 (Summer/Winter Coding(~2018)
+ * comment : Map, Set 활용하면 가독성, 효율성 향상
  */
 public class VisitedPathLength {
     private int solution(String dirs) {

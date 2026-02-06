@@ -8,7 +8,7 @@ import java.util.Arrays;
 /**
  * 가장 긴 감소하는 수열_11722
  */
-public class TheLongestDecreasingSequence {
+public class TheLongestDecreasingSequence_11722 {
     private int getSequenceLength(int N, int[] arrN) {
         int[] memoization = new int[N];
         int max = 1;
@@ -31,7 +31,7 @@ public class TheLongestDecreasingSequence {
     }
 
     public static void main(String[] args) throws IOException {
-        TheLongestDecreasingSequence main = new TheLongestDecreasingSequence();
+        TheLongestDecreasingSequence_11722 main = new TheLongestDecreasingSequence_11722();
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());

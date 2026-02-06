@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 /**
  * 1,2,3 더하기_9095
  */
-public class Adding123 {
+public class Adding123_9095 {
     private String getAdding123Counts(int n, int[] nums) {
         StringBuilder sb = new StringBuilder();
         int[] memoization = new int[12];
@@ -30,7 +30,7 @@ public class Adding123 {
     }
 
     public static void main(String[] args) throws IOException {
-        Adding123 main = new Adding123();
+        Adding123_9095 main = new Adding123_9095();
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());

@@ -10,16 +10,12 @@ import java.util.List;
  * comment : Brute Force 사용
  */
 public class MenuRenewal {
-    private void permutation(HashMap<String, Integer> record, boolean[] visited, int num, int cur, int start, String order, String permu) {
+    private void permutation(HashMap<String, Integer> record, int num, int cur, int start, String order, String permu) {
         if(cur == num) {
             record.put(permu, record.getOrDefault(permu, 0) + 1);
         } else {
-            for(int i = start; i < visited.length; i++) {
-                if(!visited[i]) {
-                    visited[i] = true;
-                    permutation(record, visited, num, cur+1, i+1, order, permu+order.charAt(i));
-                    visited[i] = false;
-                }
+            for(int i = start; i < order.length(); i++) {
+                permutation(record, num, cur+1, i+1, order, permu+order.charAt(i));
             }
         }
     }
@@ -32,14 +28,12 @@ public class MenuRenewal {
         // 모든 경우의 수를 만든 후 count
         for(int num : course) {
             for(String order : orders) {    // 주문별 조합
-                boolean[] visited = new boolean[order.length()];
-
                 // 주문 정렬
                 char[] charArr = order.toCharArray();
                 Arrays.sort(charArr);
 
                 // 조합
-                this.permutation(record, visited, num, 0, 0, String.valueOf(charArr), "");
+                this.permutation(record, num, 0, 0, String.valueOf(charArr), "");
             }
 
             int max = 2;

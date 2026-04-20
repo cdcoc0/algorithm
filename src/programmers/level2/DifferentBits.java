@@ -24,14 +24,13 @@ public class DifferentBits {
                     continue;
                 }
 
+                binary = "0" + binary;
                 for(int j = binary.length()-1; j >= 0; j--) {
                     if(binary.charAt(j) == '0') {
                         binary2 = binary.substring(0, j) + "10" + binary.substring(j+2);
                         break;
                     }
                 }
-
-                if(binary.equals(binary2)) binary2 = "10" + binary.substring(1);
 
                 answer[i] = Long.parseLong(binary2, 2);
             }

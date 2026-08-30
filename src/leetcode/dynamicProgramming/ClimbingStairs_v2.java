@@ -1,0 +1,27 @@
+package leetcode.dynamicProgramming;
+
+/**
+ * Top Interview Questions[easy]: Dynamic Programming-Climbing Stairs
+ */
+public class ClimbingStairs_v2 {
+    public static void main(String[] args) {
+        Solution.climbStairs(38);
+    }
+
+    static class Solution {
+        static int climbStairs(int n) {
+            if(n <= 2) return n;
+
+            int prev1 = 1;
+            int prev2 = 2;
+
+            for(int i = 3; i <= n; i++) {
+                int tmp = prev1 + prev2;
+                prev1 = prev2;
+                prev2 = tmp;
+            }
+
+            return prev2;
+        }
+    }
+}
